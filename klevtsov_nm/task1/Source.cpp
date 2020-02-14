@@ -4,61 +4,97 @@
 class Temperature
 {
 private:
-	double temp;
+	double t;
 public:
-	Temperature(double temp = 0)
+	Temperature(double t = 0)
 	{
-		set_temp(temp);
+		this->t = t;
 	}
 
-	Temperature(const Temperature &temperature)
+	Temperature(const Temperature &other)
 	{
-		set_temp(temperature.temp);
+		this->t = other.t;
 	}
 
-	void set_temp(double temp)
+	~Temperature() {}
+
+	void setTemp(double t)
 	{
-		this->temp = temp;
+		this->t = t;
 	}
 
-	double get_temp()
+	double getTemp()
 	{
-		return this->temp;
+		return t;
 	}
 
 	void print()
 	{
-		std::cout << "Temperature: " << this->temp << " C" << std::endl;
+		std::cout << "Temperature: " << t << " C" << std::endl;
 	}
 
-	Temperature& operator= (const Temperature &temperature)
+	Temperature& operator =(const Temperature &other)
 	{
-		set_temp(temperature.temp);
+		this->t = other.t;
 		return *this;
 	}
 
-	double fahrenheit()
+	Temperature operator +(const Temperature &other)
 	{
-		return get_temp() * 9 / 5 + 32;
+		Temperature temp(this->t + other.t);
+		return temp;
 	}
 
-	double kelvin()
+	Temperature operator -(const Temperature &other)
 	{
-		return get_temp() + 273.15;
+		Temperature temp(this->t - other.t);
+		return temp;
 	}
 
-	double rankine()
+	bool operator ==(const Temperature &other)
 	{
-		return get_temp() * 9 / 5 + 491.67;
+		return this->t == other.t;
 	}
 
-	double reaumur()
+	bool operator !=(const Temperature &other)
 	{
-		return get_temp() * 4 / 5;
+		return !(this->t == other.t);
+	}
+
+	friend std::istream& operator >>(std::istream &in, Temperature &temp)
+	{
+		in >> temp.t;
+		return in;
+	}
+
+	friend std::ostream& operator <<(std::ostream &out, const Temperature &temp)
+	{
+		out << temp.t;
+		return out;
+	}
+
+	double toFahrenheit()
+	{
+		return t * 9 / 5 + 32;
+	}
+
+	double toKelvin()
+	{
+		return t + 273.15;
+	}
+
+	double toRankine()
+	{
+		return t * 9 / 5 + 491.67;
+	}
+
+	double toReaumur()
+	{
+		return t * 4 / 5;
 	}
 };
 
-double get_temp(Temperature &temp, std::string &unit)
+double getTemp(Temperature &temp, std::string &unit)
 {
 	int variable;
 	do
@@ -73,11 +109,11 @@ double get_temp(Temperature &temp, std::string &unit)
 	} while (variable < 1 || variable > 5);
 	switch (variable)
 	{
-	case 1: unit = " C"; return temp.get_temp(); break;
-	case 2: unit = " F"; return temp.fahrenheit(); break;
-	case 3: unit = " K"; return temp.kelvin(); break;
-	case 4: unit = " Ra"; return temp.rankine(); break;
-	case 5: unit = " R"; return temp.reaumur(); break;
+	case 1: unit = " C"; return temp.getTemp();
+	case 2: unit = " F"; return temp.toFahrenheit();
+	case 3: unit = " K"; return temp.toKelvin();
+	case 4: unit = " Ra"; return temp.toRankine();
+	case 5: unit = " R"; return temp.toReaumur();
 	}
 }
 
@@ -99,14 +135,15 @@ int main(void)
 			double t;
 			std::cout << "Enter temperature (Celsius): ";
 			std::cin >> t;
-			temp.set_temp(t);
+			temp.setTemp(t);
 			break;
 		case 2:
-			std::cout << "Temperature: " << get_temp(temp, unit) << unit << std::endl;
+			std::cout << "Temperature: " << getTemp(temp, unit) << unit << std::endl;
 			break;
 		case 3:
 			return 0;
 			break;
 		}
+		std::cout << std::endl;
 	}
 }
