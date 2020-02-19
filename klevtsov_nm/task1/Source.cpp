@@ -10,84 +10,109 @@ public:
 	{
 		this->t = t;
 	}
-
 	Temperature(const Temperature &other)
 	{
 		this->t = other.t;
 	}
-
 	~Temperature() {}
-
 	void setTemp(double t)
 	{
 		this->t = t;
 	}
-
 	double getTemp()
 	{
 		return t;
 	}
-
 	void print()
 	{
 		std::cout << "Temperature: " << t << " C" << std::endl;
 	}
-
 	Temperature& operator =(const Temperature &other)
 	{
 		this->t = other.t;
 		return *this;
 	}
-
+	Temperature& operator =(const double &value)
+	{
+		this->t = value;
+		return *this;
+	}
 	Temperature operator +(const Temperature &other)
 	{
 		Temperature temp(this->t + other.t);
 		return temp;
 	}
-
+	Temperature operator +(const double &value)
+	{
+		Temperature temp(this->t + value);
+		return temp;
+	}
 	Temperature operator -(const Temperature &other)
 	{
 		Temperature temp(this->t - other.t);
 		return temp;
 	}
-
+	Temperature operator -(const double &value)
+	{
+		Temperature temp(this->t - value);
+		return temp;
+	}
+	Temperature operator *(const double &value)
+	{
+		Temperature temp(this->t * value);
+		return temp;
+	}
+	Temperature operator /(const double &value)
+	{
+		Temperature temp(this->t / value);
+		return temp;
+	}
+	bool operator <=(const Temperature &other)
+	{
+		return this->t <= other.t;
+	}
+	bool operator >=(const Temperature &other)
+	{
+		return this->t >= other.t;
+	}
+	bool operator >(const Temperature &other)
+	{
+		return !(*this <= other);
+	}
+	bool operator <(const Temperature &other)
+	{
+		return !(*this >= other);
+	}
 	bool operator ==(const Temperature &other)
 	{
 		return this->t == other.t;
 	}
-
 	bool operator !=(const Temperature &other)
 	{
 		return !(this->t == other.t);
 	}
-
 	friend std::istream& operator >>(std::istream &in, Temperature &temp)
 	{
 		in >> temp.t;
 		return in;
 	}
-
 	friend std::ostream& operator <<(std::ostream &out, const Temperature &temp)
 	{
 		out << temp.t;
 		return out;
 	}
-
 	double toFahrenheit()
 	{
 		return t * 9 / 5 + 32;
 	}
-
 	double toKelvin()
 	{
 		return t + 273.15;
 	}
-
 	double toRankine()
 	{
 		return t * 9 / 5 + 491.67;
 	}
-
 	double toReaumur()
 	{
 		return t * 4 / 5;
@@ -132,10 +157,8 @@ int main(void)
 		switch (variable)
 		{
 		case 1:
-			double t;
 			std::cout << "Enter temperature (Celsius): ";
-			std::cin >> t;
-			temp.setTemp(t);
+			std::cin >> temp;
 			break;
 		case 2:
 			std::cout << "Temperature: " << getTemp(temp, unit) << unit << std::endl;
