@@ -50,6 +50,7 @@ public:
 			denominator *= denominator * (-1);
 		}
 	}
+
 	Rational_Fraction operator+ (const Rational_Fraction &fraction)
 	{
 		int NOK = this->denominator * fraction.denominator / NOD(this->denominator, fraction.denominator);
@@ -81,6 +82,7 @@ public:
 		Rational_Fraction res = Rational_Fraction(res_num, res_denom);
 		return res;
 	}
+
 	void Show()
 	{
 		std::cout << numerator << "/" << denominator << std::endl;
