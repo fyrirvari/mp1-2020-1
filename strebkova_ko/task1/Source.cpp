@@ -66,7 +66,7 @@ public:
 	Rational_Fraction operator- (const Rational_Fraction &fraction)
 	{
 		int NOK = this->denominator * fraction.denominator / NOD(this->denominator, fraction.denominator);
-		int res_num = this->numerator * NOK / denominator - fraction.numerator * NOK / fraction.denominator;
+		int res_num = this->numerator * NOK / this->denominator - fraction.numerator * NOK / fraction.denominator;
 		Rational_Fraction res = Rational_Fraction(res_num, NOK);
 		return res;
 	}
