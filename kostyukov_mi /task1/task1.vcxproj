@@ -18,6 +18,7 @@
     </ProjectConfiguration>
     <ClCompile Include="main.cpp" />
     <ClInclude Include="uint64.h" />
+    <ClInclude Include="int64.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
