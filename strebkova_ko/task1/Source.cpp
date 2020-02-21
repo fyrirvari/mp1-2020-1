@@ -1,6 +1,10 @@
 ﻿#include <iostream>
 #include <clocale>
 #include <cmath>
+using std::cout;
+using std::cin;
+using std::endl;
+using std::abs;
 
 int NOD(int a, int b)
 {
@@ -33,7 +37,7 @@ public:
 		numerator = a;
 		denominator = b;
 		if (denominator == 0)
-			std::cout << "Некорректная дробь" << std::endl;
+			cout << "Некорректная дробь" << endl;
 		else 
 			Simplified_Fraction ();
 	}
@@ -41,7 +45,7 @@ public:
 	void Simplified_Fraction()
 	{
 		int nod;
-		nod = NOD(fabs(numerator), fabs(denominator));
+		nod = NOD(abs(numerator), abs(denominator));
 		numerator = numerator / nod;
 		denominator = denominator / nod;
 		if (denominator < 0)
@@ -85,7 +89,7 @@ public:
 
 	void Show()
 	{
-		std::cout << numerator << "/" << denominator << std::endl;
+		cout << numerator << "/" << denominator << endl;
 	}
 };
 
@@ -97,21 +101,21 @@ void main()
 	int num_a, denom_a;
 	do
 	{
-		std::cout << "Введите первую дробь в формате a/b: ";
-		std::cin >> num_a >> slash >> denom_a;
+		cout << "Введите первую дробь в формате a/b: ";
+		cin >> num_a >> slash >> denom_a;
 		a = Rational_Fraction(num_a, denom_a);
 	} while (denom_a == 0);
 	int num_b, denom_b;
 	do
 	{
-		std::cout << "Введите вторую дробь в формате a/b: ";
-		std::cin >> num_b >> slash >> denom_b;
+		cout << "Введите вторую дробь в формате a/b: ";
+		cin >> num_b >> slash >> denom_b;
 		b = Rational_Fraction(num_b, denom_b);
 	} while (denom_b == 0);
-	std::cout << "Выберете операцию с дробями:" << std::endl;
-	std::cout << "1 - сложение" << std::endl << "2 - разность" << std::endl << "3 - произведение" << std::endl << "4 - деление" << std::endl;
+	cout << "Выберете операцию с дробями:" << endl;
+	cout << "1 - сложение" << endl << "2 - разность" << endl << "3 - произведение" << endl << "4 - деление" << endl;
 	int operation;
-	std::cin >> operation;
+	cin >> operation;
 	switch (operation)
 	{
 		case 1:
