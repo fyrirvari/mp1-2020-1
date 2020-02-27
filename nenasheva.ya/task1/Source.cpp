@@ -1,16 +1,16 @@
 #include <iostream>
-#include "Konvert.h"
+#include "Konverter.h"
 
 int main()
 {
 	double z;
-	printf("Vvedite znachenie v metrah: ");
+	printf("Enter value in meters: ");
 	scanf_s("%lf", &z);
-	Konvert Z(z);
+	Konverter Z(z);
 
 	int r;
-	printf("Meri velichini dlya perevoda:\n1)dume\n2)fut\n3)yard\n");
-	printf("Viberite mery velichini dlya perevoda: ");
+	printf("Measures of quantity for conversion:\n1)dume\n2)fut\n3)yard\n4)mile\n5)arshin\n6)millimeter\n");
+	printf("Choose a measure of magnitude to conversion: ");
 	scanf_s("%d", &r);
 
 	double result;
@@ -28,13 +28,25 @@ int main()
 		result = Z.yard();
 		printf("result = %lf(yard)\n", result);
 		break;
+	case 4:
+		result = Z.mile();
+		printf("result = %lf(mile)\n", result);
+		break;
+	case 5:
+		result = Z.arshin();
+		printf("result = %lf(arshin)\n", result);
+		break;
+	case 6:
+		result = Z.millimeter();
+		printf("result = %lf(millimeter)\n", result);
+		break;
 	}
 
-	printf("Vvedite novoe znachenie v metrah: ");
+	printf("Enter new value in meters: ");
 	scanf_s("%lf", &z);
 	Z.set(z);
-	printf("V danniy moment vnytri menya nahoditsya: %lf\n", Z.get());
-	printf("Pechataem soderzhanie ob'ekta: ");
+	printf("At the moment, inside me: %lf\n", Z.get());
+	printf("We print the contents of the object: ");
 	Z.write();
 	printf("\n");
 

@@ -14,12 +14,12 @@
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Konvert.cpp">
+    <ClCompile Include="Konverter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Konvert.h">
+    <ClInclude Include="Konverter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
