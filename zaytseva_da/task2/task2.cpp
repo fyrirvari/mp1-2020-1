@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<cstring> 
 #include <iostream>
-#include <cstdio> 
+#include <cstdio>
 using namespace std;
 
 class String
@@ -152,9 +152,8 @@ int main()
 		switch (mainchoice)
 		{
 		case 1:
-			cout << "Please enter the string:\n" << endl;
-			cin.getline(s1, 40);
-			cout << s1 << endl;
+			cout << "Please enter the string:" << endl;
+			cin >> s1;
 			s.Setstring(s1);
 			system("pause");
 			system("cls");
