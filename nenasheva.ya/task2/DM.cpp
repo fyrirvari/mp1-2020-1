@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include "DM.h"
 
 DM::DM()
@@ -10,17 +10,42 @@ DM::DM()
 DM::DM(int q)
 {
 	n = q;
-	arr = new double[n];  //выделяет память для столького количества элементов, сколько мы хотим
+	arr = new double[n];  //РІС‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РґР»СЏ СЃС‚РѕР»СЊРєРѕРіРѕ РєРѕР»РёС‡РµСЃС‚РІР° СЌР»РµРјРµРЅС‚РѕРІ, СЃРєРѕР»СЊРєРѕ РјС‹ С…РѕС‚РёРј
 	for (int i = 0; i < n; i++)
 	{
 		arr[i] = 0;
 	}
 }
 
+DM::DM(DM & x)
+{
+	n = x.n;
+	arr = new double[n];  //РІС‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РґР»СЏ СЃС‚РѕР»СЊРєРѕРіРѕ РєРѕР»РёС‡РµСЃС‚РІР° СЌР»РµРјРµРЅС‚РѕРІ, СЃРєРѕР»СЊРєРѕ РјС‹ С…РѕС‚РёРј
+	for (int i = 0; i < n; i++)
+	{
+		arr[i] = x.arr[i];    //РљРѕРїРёСЂСѓРµСЃРј РјР°СЃСЃРёРІ, РєР°Рє strcpy
+	}
+}
+
 DM::~DM()
 {
-	if (n > 0)  //проверка на освобождение памяти. Если n = 0, то удаляться не будет
+	if (n > 0)  //РїСЂРѕРІРµСЂРєР° РЅР° РѕСЃРІРѕР±РѕР¶РґРµРЅРёРµ РїР°РјСЏС‚Рё. Р•СЃР»Рё n = 0, С‚Рѕ СѓРґР°Р»СЏС‚СЊСЃСЏ РЅРµ Р±СѓРґРµС‚
 	delete[]arr;
+}
+
+DM & DM::operator=(DM & x)
+{
+	if (n != x.n)
+	{
+		delete[]arr;
+		n = x.n;
+		arr = new double[n];  //РІС‹РґРµР»СЏРµС‚ РїР°РјСЏС‚СЊ РґР»СЏ СЃС‚РѕР»СЊРєРѕРіРѕ РєРѕР»РёС‡РµСЃС‚РІР° СЌР»РµРјРµРЅС‚РѕРІ, СЃРєРѕР»СЊРєРѕ РјС‹ С…РѕС‚РёРј
+	}
+	for (int i = 0; i < n; i++)
+	{
+		arr[i] = 0;
+	}
+	return *this;
 }
 
 void DM::set_n(int f)
@@ -28,7 +53,7 @@ void DM::set_n(int f)
 	if (n > 0)
 	delete[]arr;
 	n = f;
-	arr = new double[n];  //выделили новую память
+	arr = new double[n];  //РІС‹РґРµР»РёР»Рё РЅРѕРІСѓСЋ РїР°РјСЏС‚СЊ
 }
 
 int DM::get_n()
@@ -38,10 +63,41 @@ int DM::get_n()
 
 void DM::set_element(int x, double y)
 {
-	arr[x] = y;  //записывает в массив по заданному номеру элемента
+	arr[x] = y;  //Р·Р°РїРёСЃС‹РІР°РµС‚ РІ РјР°СЃСЃРёРІ РїРѕ Р·Р°РґР°РЅРЅРѕРјСѓ РЅРѕРјРµСЂСѓ СЌР»РµРјРµРЅС‚Р°
 }
 
 double DM::get_element(int x)
 {
 	return arr[x];
+}
+
+double DM::get_min()
+{
+	double min = 100000000;
+	for (int i = 0; i < n; i++)
+	{
+		if (arr[i] < min)
+			min = arr[i];
+	}
+	return min;
+}
+
+int DM::Test()
+{
+	for (int i = 0; i < n - 1; i++)
+	{
+		if (arr[i] > arr[i + 1])
+			return 0;
+	}
+	return 1;
+}
+
+DM DM::Select()
+{
+	DM Result(n / 2);
+	for (int i = 1; i < n; i += 2)
+	{
+		Result.arr[i/2] = arr[i];
+	}
+	return Result;
 }
