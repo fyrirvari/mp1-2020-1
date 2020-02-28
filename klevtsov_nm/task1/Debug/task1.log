@@ -1,5 +1,0 @@
-﻿  Source.cpp
-  Temperature.cpp
-  Создание кода...
-d:\fyrirvari\projects\vs2017\mp1-2020-1\klevtsov_nm\task1\source.cpp(25): warning C4715: getTemp: значение возвращается не при всех путях выполнения
-  task1.vcxproj -> D:\fyrirvari\Projects\VS2017\mp1-2020-1\klevtsov_nm\Debug\task1.exe
