@@ -38,11 +38,11 @@ int main()
 	double r = mas1.get_min();
 	cout << r << '\n';
 
-	if (mas1.Test())
+	if (mas1.test())
 		cout << "Упорядоченный\n";
 	else cout << "Неупорядоченный\n";
 
-	DM Res = mas1.Select();   //Выбор элементов с нечётными индексами
+	DM Res = mas1.select();   //Выбор элементов с нечётными индексами
 	cout << "Выводим подмассив: ";
 	for (int i = 0; i < Res.get_n(); i++)
 	{

@@ -7,10 +7,10 @@ private:
 public:
 	DM();
 	DM(int q);
-	DM(DM &x);
+	DM(const DM &x);
 	~DM();
 
-	DM& operator=(DM &x);
+	DM& operator=(const DM &x);
 
 	void set_n(int f);
 	int get_n();
@@ -19,8 +19,8 @@ public:
 	double get_element(int x);
 
 	double get_min();
-	int Test();
+	int test();
 
-	DM Select();
+	DM select();
 };
 

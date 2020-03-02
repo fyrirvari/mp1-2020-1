@@ -17,7 +17,7 @@ DM::DM(int q)
 	}
 }
 
-DM::DM(DM & x)
+DM::DM(const DM & x)
 {
 	n = x.n;
 	arr = new double[n];  //выделяет память для столького количества элементов, сколько мы хотим
@@ -33,7 +33,7 @@ DM::~DM()
 	delete[]arr;
 }
 
-DM & DM::operator=(DM & x)
+DM & DM::operator=(const DM & x)
 {
 	if (n != x.n)
 	{
@@ -41,7 +41,7 @@ DM & DM::operator=(DM & x)
 		n = x.n;
 		arr = new double[n];  //выделяет память для столького количества элементов, сколько мы хотим
 	}
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < x.n; i++)
 	{
 		arr[i] = 0;
 	}
@@ -73,7 +73,7 @@ double DM::get_element(int x)
 
 double DM::get_min()
 {
-	double min = 100000000;
+	double min = arr[0];
 	for (int i = 0; i < n; i++)
 	{
 		if (arr[i] < min)
@@ -82,7 +82,7 @@ double DM::get_min()
 	return min;
 }
 
-int DM::Test()
+int DM::test()
 {
 	for (int i = 0; i < n - 1; i++)
 	{
@@ -92,7 +92,7 @@ int DM::Test()
 	return 1;
 }
 
-DM DM::Select()
+DM DM::select()
 {
 	DM Result(n / 2);
 	for (int i = 1; i < n; i += 2)
