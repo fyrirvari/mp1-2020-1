@@ -21,34 +21,40 @@ public:
     {
         double weightoz;
         weightoz = weight * 35.27;
+        return weightoz;
     }
 
     void kg_pound()
     {
         double weightpo;
         weightpo = weight * 2.2;
+        return weightpo;
     }
 
     void kg_stone()
     {
         double weightst;
         weightst = weight * 0.16;
+        return weightst;
     }
 
     void kg_ruspound()
     {
         double weightrus;
         weightrus = weight * 2.44;
+        return weightrus;
     }
     void kg_carat()
     {
         double weightcar;
         weightcar = weight * 5000;
+        return weightcar;
     }
     void kg_apothecarypound()
     {
         double weightapo;
         weightapo = weight * 2.68;
+        return weightapo;
     }
 };
 
