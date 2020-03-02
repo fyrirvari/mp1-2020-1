@@ -30,22 +30,25 @@ class Vector
         {
             size = v.size;
             data = new Type[size];
-            memcpy(data, v.data, sizeof(Type)*size);
+            std::copy(data, data + size, v.data);
+            //memcpy(data, v.data, sizeof(Type)*size);
         }
         ~Vector()
         {
-            delete data;
+            delete[] data;
         }
         Vector operator=(const Vector &v)
         {
-            Vector res(v);
+            size = v.size;
+            data = new Type[size];
+            std::copy(data, data + size, v.data);
             return v;
         }
         void setSize(size_t _size)
         {
             Type *buff = new Type[_size];
             memcpy(buff, data, sizeof(Type)*size);
-            delete data;
+            delete[] data;
             data = buff;
             size = _size;
         }
@@ -55,7 +58,7 @@ class Vector
         }
         Type getLength()
         {
-            Type len;
+            Type len = 0;
             for (size_t i = 0; i < size; i++)
             {
                 len += data[i] * data[i];
