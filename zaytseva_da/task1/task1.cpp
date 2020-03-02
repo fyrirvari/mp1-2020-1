@@ -7,15 +7,9 @@ private:
     double weight = 0;
 public:
 
-    void weightnow()
+    void set(double x)
     {
-        do
-        {
-            cout << "Please enter the weight you want to work with (kg)\n";
-            cin >> weight;
-            if (weight < 0) cout << "Yours weight is less than zero. Please try again:\n\n";
-        } while (weight < 0);
-        cout << "weight now:" << weight << "kg\n\n";
+        weight = x;
     }
 
     void print()
@@ -27,40 +21,34 @@ public:
     {
         double weightoz;
         weightoz = weight * 35.27;
-        cout << "Result:" << weight << "kg =  " << weightoz << " ounces'\n\n";
     }
 
     void kg_pound()
     {
         double weightpo;
         weightpo = weight * 2.2;
-        cout << "Result:" << weight << "kg =  " << weightpo << " pounds'\n\n";
     }
 
     void kg_stone()
     {
         double weightst;
         weightst = weight * 0.16;
-        cout << "Result:" << weight << "kg =  " << weightst << " stones'\n\n";
     }
 
     void kg_ruspound()
     {
         double weightrus;
         weightrus = weight * 2.44;
-        cout << "Result:" << weight << "kg =  " << weightrus << " russian pounds'\n\n";
     }
     void kg_carat()
     {
         double weightcar;
         weightcar = weight * 5000;
-        cout << "Result:" << weight << "kg =  " << weightcar << " carats'\n\n";
     }
     void kg_apothecarypound()
     {
         double weightapo;
         weightapo = weight * 2.68;
-        cout << "Result:" << weight << "kg =  " << weightapo << " apothecary pounds'\n\n";
     }
 };
 
@@ -69,8 +57,11 @@ int main()
     weightkg a;
     int mainchoice;
     int choice;
+    double k;
     while (true)
     {
+       
+
         do
         {
             cout << "Please select an action\n 1) find out the current weight\n 2) Set a new weight\n 3) Transfer to another measure of weight\n 4) Exit\n";
@@ -84,7 +75,13 @@ int main()
             a.print();
             break;
         case 2:
-            a.weightnow();
+            do
+            {
+                cout << "Please enter the weight you want to work with (kg)\n";
+                cin >> k;
+                if (k < 0) cout << "Yours weight is less than zero. Please try again:\n\n";
+            } while (k < 0);
+            a.set(k);
             break;
         case 3:
             do
@@ -97,22 +94,22 @@ int main()
             switch (choice)
             {
             case 1:
-                a.kg_oz();
+                cout << "Result:" << weight << "kg =  " << a.kg_oz() << " ounces'\n\n";
                 break;
             case 2:
-                a.kg_pound();
+                cout << "Result:" << weight << "kg =  " << a.kg_pound() << " pounds'\n\n";
                 break;
             case 3:
-                a.kg_stone();
+                cout << "Result:" << weight << "kg =  " << a.kg_stone() << " stones'\n\n";
                 break;
             case 4:
-                a.kg_ruspound();
+                cout << "Result:" << weight << "kg =  " << a.kg_ruspound() << " russian pounds'\n\n";
                 break;
             case 5:
-                a.kg_carat();
+                cout << "Result:" << weight << "kg =  " << a.kg_carat() << " carats'\n\n";
                 break;
             case 6:
-                a.kg_apothecarypound();
+                cout << "Result:" << weight << "kg =  " << a.kg_apothecarypound() << " apothecary pounds'\n\n";
                 break;
             }
             break;
