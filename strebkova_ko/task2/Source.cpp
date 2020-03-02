@@ -25,19 +25,16 @@ public:
 			coeff[i] = _coeff[i];
 	}
 
-	int Set_Deg()
+	void Set_Deg(int _n)
 	{
-		cout << "Введите степень полинома" << endl;
-		cin >> n;
-		return n;
+		n = _n;
 	}
 
-	void Set_Coeff(double* coeff)
+	void Set_Coeff(double* _coeff)
 	{
-		cout << "Введите коэффициенты полинома" << endl;
 		for (int i = 0; i <= n; i++)
 		{
-			cin >> coeff[i];
+			coeff[i] = _coeff[i];
 		}
 	}
 
@@ -48,38 +45,31 @@ public:
 		cout << coeff[n] << endl;
 	}
 
-	void Deg_Polynom()
+	int Find_Deg()
 	{
-		for (int i = 0; i <= n; i++)
+		int i;
+		for (i = 0; i <= n; i++)
 			if (coeff[i] != 0)
-			{
-				cout << "Степень полинома: " << n - i << endl;
 				break;
-			}
+		return n - i;
 	}
 
-	void Find_Coeff()
+	double Find_Coeff(int k)
 	{
-		cout << "Введите номер коэффицинта" << endl;
-		int k;
-		cin >> k;
-		cout << k << "-ый кэффициент: " << coeff[k - 1] << endl;
+		return coeff[k - 1];
 	}
 
-	void Calculate()
+	double Calculate(double x)
 	{
-		cout << "Введите х" << endl;
-		double x;
-		cin >> x;
 		double f = 0;
 		for (int i = 0; i <= n; i++)
 		{
 			f = f + coeff[i] * std::pow(x, n - i);
 		}
-		cout << "Значение полинома в точке х = " << x << ": " << f << endl;
+		return f;
 	}
 
-	void Derivative()
+	Polynom Derivative()
 	{
 		double Coeff[12];
 		for (int i = 0; i < n; i++)
@@ -88,15 +78,15 @@ public:
 			Coeff[i] = Coeff[i] * (n - i);
 		}
 		n = n - 1;
-		Polynom F(n, Coeff);
-		F.Show_Polynom();
+		Polynom P = Polynom(n, Coeff);
+		return P;
 	}
 
-	Polynom operator=(const Polynom &F)
+	Polynom& operator=(const Polynom &F)
 	{
-		this->n = F.n;
+		n = F.n;
 		for (int i = 0; i <= n; i++)
-			this->coeff[i] = F.coeff[i];
+			coeff[i] = F.coeff[i];
 		return *this;
 	}
 
@@ -107,10 +97,17 @@ void main()
 {
 	std::setlocale(LC_ALL, "Rus");
 	Polynom F;
-	int n = F.Set_Deg();
-	double* coeff = new double [n + 1];
+	int n;
+	cout << "Введите степень полинома (от 0 до 12)" << endl;
+	cin >> n;
+	F.Set_Deg(n);
+	double* coeff = new double[n + 1];
+	cout << "Введите коэффициенты полинома" << endl;
+	for (int i = 0; i <= n; i++)
+	{
+		cin >> coeff[i];
+	}
 	F.Set_Coeff(coeff);
-	F = Polynom(n, coeff);
 	cout << "Выберете действие" << endl;
 	cout << "1) Вывести полином на экран" << endl << "2) Узнать степень полинома" << endl << "3) Узнать значение коэффициента по его номеру" << endl;
 	cout << "4) Вычислить значение полинома в заданной точке х" << endl << "5) Найти производную полинома" << endl;
@@ -118,22 +115,29 @@ void main()
 	cin >> mode;
 	switch (mode)
 	{
-		case 1:
-			F.Show_Polynom();
-			break;
-		case 2:
-			F.Deg_Polynom();
-			break;
-		case 3:
-			cout << "Коэффициенты пронумерованы от 1 до " << n + 1 << ", слева направо" << endl;
-			F.Find_Coeff();
-			break;
-		case 4:
-			F.Calculate();
-			break;
-		case 5:
-			F.Derivative();
-			break;
+	case 1:
+		F.Show_Polynom();
+		break;
+	case 2:
+		cout << "Степень полинома: " << F.Find_Deg() << endl;
+		break;
+	case 3:
+		cout << "Коэффициенты пронумерованы от 1 до " << n + 1 << ", слева направо" << endl;
+		cout << "Введите номер коэффицинта" << endl;
+		int k;
+		cin >> k;
+		cout << k << "-ый кэффициент: " << F.Find_Coeff(k) << endl;
+		break;
+	case 4:
+		cout << "Введите х" << endl;
+		double x;
+		cin >> x;
+		cout << "Значение полинома в точке х = " << x << ": " << F.Calculate(x) << endl;
+		break;
+	case 5:
+		Polynom P = F.Derivative();
+		P.Show_Polynom();
+		break;
 	}
 	delete[]coeff;
 	system("pause");
