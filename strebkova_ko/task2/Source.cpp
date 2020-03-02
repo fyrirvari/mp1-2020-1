@@ -54,9 +54,9 @@ public:
 		return n - i;
 	}
 
-	double Find_Coeff(int k)
+	double Get_Coeff(int k)
 	{
-		return coeff[k - 1];
+		return coeff[k];
 	}
 
 	double Calculate(double x)
@@ -74,11 +74,10 @@ public:
 		double Coeff[12];
 		for (int i = 0; i < n; i++)
 		{
-			Coeff[i] = coeff[i];
-			Coeff[i] = Coeff[i] * (n - i);
+			Coeff[i] = coeff[i] * (n - i);
 		}
-		n = n - 1;
-		Polynom P = Polynom(n, Coeff);
+		int k = n - 1;
+		Polynom P = Polynom(k, Coeff);
 		return P;
 	}
 
@@ -122,11 +121,11 @@ void main()
 		cout << "Степень полинома: " << F.Find_Deg() << endl;
 		break;
 	case 3:
-		cout << "Коэффициенты пронумерованы от 1 до " << n + 1 << ", слева направо" << endl;
+		cout << "Коэффициенты пронумерованы от 0 до " << n << ", слева направо" << endl;
 		cout << "Введите номер коэффицинта" << endl;
 		int k;
 		cin >> k;
-		cout << k << "-ый кэффициент: " << F.Find_Coeff(k) << endl;
+		cout << k << "-ый кэффициент: " << F.Get_Coeff(k) << endl;
 		break;
 	case 4:
 		cout << "Введите х" << endl;
