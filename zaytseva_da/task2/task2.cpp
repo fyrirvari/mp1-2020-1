@@ -61,8 +61,9 @@ public:
 	}
 	void Changesymbol(int index, char symbol)
 	{
-		*(str + index - 1) = symbol;
+		str[index - 1] = symbol;
 	}
+	
 	char* Substring(char* str, int m, int n)
 	{
 		char* newstr;
@@ -94,7 +95,7 @@ public:
 		return(newstr);
 	}
 
-	bool palindrome()
+	bool Palindrome()
 	{
 		char* flag1, * flag2;
 		int number = 0;
@@ -108,7 +109,7 @@ public:
 		return number == len / 2;
 	}
 
-	int Ndifsymbol()
+	int NumberOfDiffSimbols()
 	{
 		int counter = 0;
 		int indicator;
@@ -189,7 +190,7 @@ int main()
 			system("cls");
 			break;
 		case 6:
-			if (s.palindrome() == 0)
+			if (s.Palindrome() == 0)
 				cout << "string isn't a palindrome" << endl;
 			else
 				cout << "string is a palindrome" << endl;
@@ -197,7 +198,7 @@ int main()
 			system("cls");
 			break;
 		case 7:
-			cout << "\n" << s.Ndifsymbol() << endl;
+			cout << "\n" << s.NumberOfDiffSimbols() << endl;
 			system("pause");
 			system("cls");
 			break;
