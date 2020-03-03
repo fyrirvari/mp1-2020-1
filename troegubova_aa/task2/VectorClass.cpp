@@ -5,7 +5,7 @@
 Vector::Vector()
 {
 	count = 0;
-	memo = NULL;
+	memo = nullptr;
 }
 Vector::Vector(int _count) : count(_count)
 {
@@ -32,12 +32,9 @@ Vector::Vector(const Vector &vec)
 }
 Vector::~Vector()
 {
-	if (memo != NULL)
-	{
-		delete[] memo;
-		memo = NULL;
-		count = 0;
-	}
+	delete[] memo;
+	memo = NULL;
+	count = 0;
 }
 
 void Vector::outPut(const char* name)
@@ -62,7 +59,7 @@ void Vector::setSize(int _count)
 }
 void Vector::setComp(int _numd, int _valute)
 {
-	memo[_numd - 1] = _valute;
+	memo[_numd] = _valute;
 }
 
 int Vector::getSize()
@@ -71,7 +68,7 @@ int Vector::getSize()
 }
 int Vector::getComp(int numb)
 {
-	return memo[numb - 1];
+	return memo[numb];
 }
 double Vector::getLen()
 {

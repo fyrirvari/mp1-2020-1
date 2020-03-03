@@ -37,7 +37,7 @@ void get_comp(Vector vec)
 	int comp, numb;
 	std::cout << "Введите номер компоненты, значение которой вы хотите узнать: ";
 	std::cin >> numb;
-	while ((numb < 0) || (numb > vec.getSize()))
+	while ((numb < 0) || (numb >= vec.getSize()))
 	{
 		std::cout << "Введено некорректное значение, введите данные ещё раз: ";
 		std::cin >> numb;
