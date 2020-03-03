@@ -61,7 +61,7 @@ public:
 	}
 	void Changesymbol(int index, char symbol)
 	{
-		str[index - 1] = symbol;
+		str[index] = symbol;
 	}
 	
 	char* Substring(char* str, int m, int n)
