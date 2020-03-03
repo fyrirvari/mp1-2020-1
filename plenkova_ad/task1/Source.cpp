@@ -15,37 +15,37 @@ public:
     {
         weight = x;
     }
-    double conv_carat()
+    double convert_to_carat()
     {
         double weight_1;
         weight_1 = weight * 5000;
         return weight_1;
     }
-    double conv_g()
+    double convert_to_g()
     {
         double weight_1;
         weight_1 = weight * 1000;
         return weight_1;
     }
-    double conv_mg()
+    double convert_to_mg()
     {
         double weight_1;
         weight_1 = weight * 1000000;
         return weight_1;
     }
-    double conv_oz()
+    double convert_to_ounce()
     {
         double weight_1;
         weight_1 = weight * 35.27396194958048;
         return weight_1;
     }
-    double conv_lb()
+    double convert_to_pound()
     {
         double weight_1;
         weight_1 = weight * 2.2046226218488;
         return weight_1;
     }
-    double conv_ton()
+    double convert_to_ton()
     {
         double weight_1;
         weight_1 = weight * 0.001;
@@ -73,22 +73,22 @@ int main()
     switch (s)
     {
     case(1):
-        cout << "Weight in carat = " << mass1.conv_carat();
+        cout << "Weight in carat = " << mass1.convert_to_carat();
         break;
     case(2):
-        cout << "Weight in gram = " << mass1.conv_g();
+        cout << "Weight in gram = " << mass1.convert_to_g();
         break;
     case(3):
-        cout << "Weight in milligram = " << mass1.conv_mg();
+        cout << "Weight in milligram = " << mass1.convert_to_mg();
         break;
     case(4):
-        cout << "Weight in ounce = " << mass1.conv_oz();
+        cout << "Weight in ounce = " << mass1.convert_to_ounce();
         break;
     case(5):
-        cout << "Weight in lb = " << mass1.conv_lb();
+        cout << "Weight in lb = " << mass1.convert_to_pound();
         break;
     case(6):
-        cout << "Weight in ton = " << mass1.conv_ton();
+        cout << "Weight in ton = " << mass1.convert_to_ton();
         break;
     }
     system("pause");
