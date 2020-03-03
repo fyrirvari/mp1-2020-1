@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
@@ -10,7 +11,16 @@ private:
 public:
 	String()
 	{
-		str = new char[41];
+		len = 0;
+		str = new char[1];
+		str[0] = '\0';
+	}
+
+	String(const String& s)
+	{
+		len = s.len;
+		str = new char[len + 1];
+		strcpy(str, s.str);
 	}
 	~String()
 	{
@@ -48,12 +58,7 @@ public:
 		len = obj1.len;
 		return *this;
 	}
-	String(const String& obj2)
-	{
-		len = obj2.len;
-		str = new char[len + 1];
-		strcpy(str, obj2.str);
-	}
+
 	char GetSymbol(int index)
 	{
 		return str[index];
@@ -88,7 +93,8 @@ public:
 int main()
 {
 
-	char word;
+	char* word;
+	word = new char[41];
 	int start = 0;
 	int _length = 0;
 	int index = 0;
@@ -99,7 +105,8 @@ int main()
 	String S1;
 	cout << "Enter the string: ";
 	cin >> word;
-	S1.SetString(&word);
+	S1.SetString(word);
+	cout << word;
 	while (h == 2)
 	{
 		cout << "Set string - 1" << endl
@@ -117,7 +124,7 @@ int main()
 		{
 			cout << "Enter the string: ";
 			cin >> word;
-			S1.SetString(&word);
+			S1.SetString(word);
 			break;
 		}
 		case 2:

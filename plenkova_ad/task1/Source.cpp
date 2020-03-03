@@ -7,6 +7,10 @@ private:
     double weight;
 
 public:
+    double get_kg()
+    {
+        return weight;
+    }
     void show_kg()
     {
         cout << "Weight in kg = " << weight << endl;
