@@ -21,15 +21,15 @@ public:
 	void set(int x, double zn); //задать элемент массива по его индексу 
 
 	double get_min_el(); //поиск минимального элемента 
-	int test1(); //проверка на упорядоченность по убыванию
-	int test2(); //проверка на упорядоченность по возрастанию 
+	int ubiv(); //проверка на упорядоченность по убыванию
+	int rast(); //проверка на упорядоченность по возрастанию 
 
 	DynamicArr nechet(); //подмассив с нечётными индексами
 };
 
 DynamicArr::DynamicArr()
 {
-	arr = NULL;
+	arr = nullptr;
 	len = 0;
 }
 DynamicArr::DynamicArr(int size)
@@ -52,17 +52,17 @@ DynamicArr::DynamicArr(DynamicArr& x)
 }
 DynamicArr::~DynamicArr()
 {
-	if (arr != NULL) free(arr);
+	delete(arr);
 }
 DynamicArr& DynamicArr::operator=(DynamicArr& x)
 {
 	if (len != x.len)
 	{
-		free(arr);
+		delete(arr);
 		len = x.len;
 		arr = new double[len];
 	}
-	for (int i = 0; i < len; i++)
+	for (int i = 0; i < x.len; i++)
 	{
 		arr[i] = 0;
 	}
@@ -89,7 +89,7 @@ double DynamicArr::get(int x)
 }
 double DynamicArr::get_min_el()
 {
-	double min = 100000000000;
+	double min = arr[0];
 	for (int i = 0; i < len; i++)
 	{
 		if (arr[i] < min)
@@ -97,23 +97,23 @@ double DynamicArr::get_min_el()
 	}
 	return min;
 }
-int DynamicArr::test1()
+int DynamicArr::ubiv()
 {
 	for (int i = 0; i < len - 1; i++)
 	{
 		if (arr[i] < arr[i + 1])
-			return 0;
+			return false;
 	}
-	return 1;
+	return true;
 }
-int DynamicArr::test2()
+int DynamicArr::rast()
 {
 	for (int i = 0; i < len - 1; i++)
 	{
 		if (arr[i + 1] < arr[i])
-			return 0;
+			return false;
 	}
-	return 1;
+	return true;
 }
 DynamicArr DynamicArr::nechet()
 {
@@ -158,11 +158,11 @@ int main()
 	double r = mas.get_min_el();
 	printf("%lf\n", r);
 
-	if (mas.test1())
+	if (mas.ubiv())
 		printf("Упорядоченный по убыванию\n");
-	if (mas.test2())
+	if (mas.rast())
 		printf("Упорядоченный по возрастанию\n");
-	if (!mas.test1() && !mas.test2())
+	if (!mas.ubiv() && !mas.rast())
 		printf("Не упорядоченный\n");
 
 	DynamicArr Res = mas.nechet();
