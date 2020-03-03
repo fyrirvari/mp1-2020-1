@@ -67,10 +67,18 @@ public:
 	{
 		str[index2] = change;
 	}
-	char GetPartOfString(int k)
+	char* GetPartOfString(int _start, int _length)
 	{
-		return str[k];
+		char * newstr = new char[_length];
+		int j = 0;
+		for (int i = _start; i < (_length - _start); i++)
+		{
+			newstr[j] = str[i];
+			j++;
+		}
+		return(newstr);
 	}
+
 	int DifferentSymbols()
 	{
 		int counter = 0;
@@ -95,7 +103,7 @@ int main()
 
 	char* word;
 	word = new char[41];
-	int start = 0;
+	int _start = 0;
 	int _length = 0;
 	int index = 0;
 	int h = 2;
@@ -152,14 +160,14 @@ int main()
 		case 5:
 		{
 			cout << "\n" << "Enter index: ";
-			cin >> start;
+			cin >> _start;
 			cout << "\n" << "Enter length: ";
 			cin >> _length;
-			for (int i = start; i < (start + _length); i++)
-			{
-				cout << S1.GetPartOfString(i);
-			}
-			cout << "\n";
+			//for (int i = start; i < (start + _length); i++)
+			//{
+				cout << S1.GetPartOfString(_start, _length);
+			//}
+			//cout << "\n";
 			break;
 		}
 		case 6:
