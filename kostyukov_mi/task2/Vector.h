@@ -24,7 +24,7 @@ class Vector
         {
             size = _size;
             data = new Type[size];
-            memcpy(data, _data, sizeof(Type) * size);
+            std::copy(data, data + size, _data);
         }
         Vector(const Vector &v)
         {
@@ -37,17 +37,17 @@ class Vector
         {
             delete[] data;
         }
-        Vector operator=(const Vector &v)
+        Vector& operator=(const Vector &v)
         {
             size = v.size;
             data = new Type[size];
             std::copy(data, data + size, v.data);
-            return v;
+            return *this;
         }
         void setSize(size_t _size)
         {
             Type *buff = new Type[_size];
-            memcpy(buff, data, sizeof(Type)*size);
+            std::copy(buff, buff + size, data);
             delete[] data;
             data = buff;
             size = _size;
