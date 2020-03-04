@@ -71,7 +71,7 @@ DynamicArr& DynamicArr::operator=(DynamicArr& x)
 void DynamicArr::set_len(int f)
 {
 	if (len > 0)
-		free(arr);
+		delete [] arr;
 	len = f;
 	arr = new double[len];
 }
