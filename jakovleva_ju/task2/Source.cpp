@@ -24,7 +24,7 @@ public:
 	int ubiv(); //проверка на упорядоченность по убыванию
 	int rast(); //проверка на упорядоченность по возрастанию 
 
-	DynamicArr nechet(); //подмассив с нечётными индексами
+	DynamicArr nech_podmassiv(); //подмассив с нечётными индексами
 };
 
 DynamicArr::DynamicArr()
@@ -52,19 +52,19 @@ DynamicArr::DynamicArr(DynamicArr& x)
 }
 DynamicArr::~DynamicArr()
 {
-	delete(arr);
+	delete [] arr;
 }
 DynamicArr& DynamicArr::operator=(DynamicArr& x)
 {
 	if (len != x.len)
 	{
-		delete(arr);
+		delete [] arr;
 		len = x.len;
 		arr = new double[len];
 	}
 	for (int i = 0; i < x.len; i++)
 	{
-		arr[i] = 0;
+		arr[i] = x.arr[i];
 	}
 	return *this;
 }
@@ -115,7 +115,7 @@ int DynamicArr::rast()
 	}
 	return true;
 }
-DynamicArr DynamicArr::nechet()
+DynamicArr DynamicArr::nech_podmassiv()
 {
 	DynamicArr Result(len / 2);
 	for (int i = 1; i < len; i += 2)
@@ -165,11 +165,11 @@ int main()
 	if (!mas.ubiv() && !mas.rast())
 		printf("Не упорядоченный\n");
 
-	DynamicArr Res = mas.nechet();
+	DynamicArr Res = mas.nech_podmassiv();
 	printf("Ваш подмассив с нечётными индексами: ");
 	for (int i = 0; i < Res.get_len(); i++)
 	{
-		printf("%lf ", (Res.get(i)));
+		printf("%lf", (Res.get(i)));
 	}
 	printf("\n");
 
