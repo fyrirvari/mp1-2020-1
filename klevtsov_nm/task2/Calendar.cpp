@@ -365,7 +365,7 @@ void Calendar::shiftEvent(std::string &name, const Date &date, unsigned char c)
 	int index = -1;
 	for (int i = 0; i < length; i++)
 	{
-		if (events[i].getName == name)
+		if (events[i].getName() == name)
 		{
 			index = i;
 			break;
