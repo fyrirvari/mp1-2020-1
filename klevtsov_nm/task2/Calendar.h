@@ -107,7 +107,7 @@ public:
 	void pop_back();
 	void clear();
 	bool empty();
-	void shiftEvent(int index, const Date &date);
+	void shiftEvent(std::string &name, const Date &date, unsigned char c);
 	void print();
 
 	Calendar& operator =(const Calendar &other);

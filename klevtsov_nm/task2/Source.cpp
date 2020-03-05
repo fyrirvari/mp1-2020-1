@@ -32,9 +32,15 @@ void setEvent(Calendar &calendar)
 	{
 		int index = getIndex(calendar);
 		Date date;
+		std::string name;
+		unsigned char c;
+		std::cout << "Enter event name: ";
+		std::cin >> name;
 		std::cout << "Enter shift" << std::endl;
 		std::cin >> date;
-		calendar.shiftEvent(index, date);
+		std::cout << "Select \"+\" or \"-\"";
+		std::cin >> c;
+		calendar.shiftEvent(name, date, c);
 	}
 }
 

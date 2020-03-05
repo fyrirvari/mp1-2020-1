@@ -360,11 +360,18 @@ bool Calendar::empty()
 	return length == 0 ? true : false;
 }
 
-void Calendar::shiftEvent(int index, const Date &date)
+void Calendar::shiftEvent(std::string &name, const Date &date, unsigned char c)
 {
-	unsigned char c;
-	std::cout << "Select \"+\" or \"-\": ";
-	std::cin >> c;
+	int index = -1;
+	for (int i = 0; i < length; i++)
+	{
+		if (events[i].getName == name)
+		{
+			index = i;
+			break;
+		}
+	}
+	if (index == -1) throw "Event doesn't exist";
 	if (c == '+')
 		push_back(Event(events[index].getEventDate() + date, events[index].getName()));
 	else
