@@ -1,73 +1,73 @@
 #include "Tabulator.h"
 
-Section::Section(double rightBoarder, double leftBoarder):rightBoarder(rightBoarder), leftBoarder(leftBoarder) {}
+Section::Section(double leftBorder, double rightBorder):rightBorder(rightBorder), leftBorder(leftBorder) {}
 
 Section::Section(const Section &other)
 {
-	this->leftBoarder = other.leftBoarder;
-	this->rightBoarder = other.rightBoarder;
+	this->leftBorder = other.leftBorder;
+	this->rightBorder = other.rightBorder;
 }
 
 Section::~Section() {}
 
-void Section::setSection(double rightBoarder, double leftBoarder)
+void Section::setSection(double leftBorder, double rightBorder)
 {
-	this->leftBoarder = leftBoarder;
-	this->rightBoarder = rightBoarder;
+	this->leftBorder = leftBorder;
+	this->rightBorder = rightBorder;
 }
 
-void Section::setLeftBoarder(double boarder)
+void Section::setLeftBorder(double border)
 {
-	this->leftBoarder = boarder;
+	this->leftBorder = border;
 }
 
-void Section::setRightBoarder(double boarder)
+void Section::setRightBorder(double border)
 {
-	this->rightBoarder = boarder;
+	this->rightBorder = border;
 }
 
-double Section::getLeftBoarder()
+double Section::getLeftBorder()
 {
-	return leftBoarder;
+	return leftBorder;
 }
 
-double Section::getRightBoarder()
+double Section::getRightBorder()
 {
-	return rightBoarder;
+	return rightBorder;
 }
 
 std::string Section::getSection()
 {
-	return "[" + std::to_string(leftBoarder) + "," + std::to_string(rightBoarder) + "]";
+	return "[" + std::to_string(leftBorder) + "," + std::to_string(rightBorder) + "]";
 }
 
 Section& Section::operator =(const Section &other)
 {
-	this->leftBoarder = other.leftBoarder;
-	this->rightBoarder = other.rightBoarder;
+	this->leftBorder = other.leftBorder;
+	this->rightBorder = other.rightBorder;
 	return *this;
 
 }
 
 std::istream& operator >>(std::istream &in, Section &section)
 {
-	std::cout << "Enter left boarder: ";
-	in >> section.leftBoarder;
-	std::cout << "Enter right boarder: ";
-	in >> section.rightBoarder;
+	std::cout << "Enter left border: ";
+	in >> section.leftBorder;
+	std::cout << "Enter right border: ";
+	in >> section.rightBorder;
 	return in;
 }
 
 std::ostream& operator <<(std::ostream &out, const Section &section)
 {
-	out << "[" + std::to_string(section.leftBoarder) + "," + std::to_string(section.rightBoarder) + "]" << std::endl;
+	out << "[" + std::to_string(section.leftBorder) + "," + std::to_string(section.rightBorder) + "]" << std::endl;
 	return out;
 }
 
 //--------------------------------------------------------------------------------
 Tabulator::Tabulator(int amt, const Section &section, double(*func)(double)) : amt(amt), section(section), func(func) {}
 
-Tabulator::Tabulator(int amt, double rightBoarder, double leftBoarder, double(*func)(double)) : amt(amt), section(rightBoarder, leftBoarder), func(func) {}
+Tabulator::Tabulator(int amt, double leftBorder, double rightBorder, double(*func)(double)) : amt(amt), section(leftBorder, rightBorder), func(func) {}
 
 Tabulator::Tabulator(const Tabulator &other) : amt(other.amt), section(other.section), func(other.func) {}
 
@@ -88,9 +88,9 @@ void Tabulator::setSection(const Section &section)
 	this->section = section;
 }
 
-void Tabulator::setSection(double rightBoarder, double leftBoarder)
+void Tabulator::setSection(double leftBorder, double rightBorder)
 {
-	section.setSection(rightBoarder, leftBoarder);
+	section.setSection(leftBorder, rightBorder);
 }
 
 double (*Tabulator::getFunction())(double)
@@ -111,9 +111,9 @@ Section Tabulator::getSection()
 void Tabulator::performTabulation()
 {
 	values.clear();
-	double step = (section.getRightBoarder() - section.getLeftBoarder()) / (amt - 1);
+	double step = (section.getRightBorder() - section.getLeftBorder()) / (amt - 1);
 	int i = 0;
-	for (double x = section.getLeftBoarder(); i < amt; x += step, i++)
+	for (double x = section.getLeftBorder(); i < amt; x += step, i++)
 	{
 		values.push_back(func(x));
 	}

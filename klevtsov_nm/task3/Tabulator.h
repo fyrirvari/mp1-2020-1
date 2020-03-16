@@ -8,18 +8,18 @@
 class Section
 {
 private:
-	double leftBoarder;
-	double rightBoarder;
+	double leftBorder;
+	double rightBorder;
 public:
-	Section(double = 1, double = 0);
+	Section(double = 0, double = 1);
 	Section(const Section &);
 	~Section();
 
-	void setSection(double = 1, double = 0);
-	void setLeftBoarder(double);
-	void setRightBoarder(double);
-	double getLeftBoarder();
-	double getRightBoarder();
+	void setSection(double = 0, double = 1);
+	void setLeftBorder(double);
+	void setRightBorder(double);
+	double getLeftBorder();
+	double getRightBorder();
 	std::string getSection();
 
 	Section& operator =(const Section &);
