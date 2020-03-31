@@ -12,6 +12,7 @@ int main(void)
 	int variable;
 	do
 	{
+		system("cls");
 		std::cout << "1) Set the beginning date" << std::endl
 			<< "2) Get the biggining date" << std::endl
 			<< "3) Set count" << std::endl
@@ -58,7 +59,6 @@ int main(void)
 			pedometer.readFrom();
 			break;
 		}
-		std::cout << "~~~~~~~~~~~~~~~~~~~" << std::endl;
 	} while (variable != 10);
 	return 0;
 }
@@ -88,7 +88,7 @@ unsigned int getMonth()
 
 WeekDay getWeekDay()
 {
-	WeekDay wd[7] = {Sat,Sun,Mon,Tue,Wed,Thu,Fri};
+	WeekDay wd[7] = {WeekDay::Sat, WeekDay::Sun, WeekDay::Mon, WeekDay::Tue, WeekDay::Wed, WeekDay::Thu, WeekDay::Fri};
 	std::string weekDays[7] = {"Sat","Sun","Mon","Tue","Wed","Thu","Fri"};
 	std::string weekDay;
 	do

@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-enum WeekDay { Sat, Sun, Mon, Tue, Wed, Thu, Fri};
+enum class WeekDay { Sat, Sun, Mon, Tue, Wed, Thu, Fri};
 
 class Date
 {

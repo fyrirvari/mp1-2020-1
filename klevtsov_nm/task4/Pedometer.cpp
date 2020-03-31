@@ -128,7 +128,7 @@ WeekDay Date::getWeekDay()
 
 WeekDay Date::getWeekDay(unsigned int day, unsigned int month, unsigned int year)
 {
-	WeekDay weekDays[] = { Sat, Sun, Mon, Tue, Wed, Thu, Fri };
+	WeekDay weekDays[] = { WeekDay::Sat, WeekDay::Sun, WeekDay::Mon, WeekDay::Tue, WeekDay::Wed, WeekDay::Thu, WeekDay::Fri };
 	if (month < 3)
 	{
 		month += 12;
@@ -502,29 +502,22 @@ Pedometer::~Pedometer()
 
 void Pedometer::incSize()
 {
-	Count *temp = new Count[length];
+	size *= 2;
+	Count *temp = new Count[size];
 	for (size_t i = 0; i < length; i++) temp[i] = counts[i];
 	delete[] counts;
-	size *= 2;
-	counts = new Count[size];
-	for (size_t i = 0; i < length; i++) counts[i] = temp[i];
-	delete[] temp;
+	counts = temp;
 }
 
 void Pedometer::incLength(size_t length)
 {
-	if (length > size)
+	while (length > size) incSize();
+	if (length < this->length)
 	{
-		while (length > size) incSize();
-	}
-	else if (length < this->length)
-	{
-		Count *temp = new Count[length];
+		Count *temp = new Count[size];
 		for (size_t i = 0; i < length; i++) temp[i] = counts[i];
 		delete[] counts;
-		counts = new Count[size];
-		for (size_t i = 0; i < length; i++) counts[i] = temp[i];
-		delete[] temp;
+		counts = temp;
 	}
 	this->length = length;
 }
@@ -537,7 +530,7 @@ size_t Pedometer::getLength()
 void Pedometer::pushBack(Count &other)
 {
 	if (other.getDate() < beginnigDate) throw "Date of this count is earlier than the beginning date";
-	if (length + 1 >= size) incSize();
+	if (length + 1 > size) incSize();
 	counts[length++] = other;
 }
 
