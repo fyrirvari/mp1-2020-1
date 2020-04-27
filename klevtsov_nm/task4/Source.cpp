@@ -59,6 +59,7 @@ int main(void)
 			pedometer.readFrom();
 			break;
 		}
+		system("pause");
 	} while (variable != 10);
 	return 0;
 }
