@@ -150,7 +150,7 @@ Stock& Stock::operator=(const Stock& other)
 }
 
 //----------------------------------------------------------------------------------------
-Cashbox::Cashbox(const std::string& path) : Stock(path), barcode("0000") {}
+Cashbox::Cashbox() : barcode("0000") {}
 
 Cashbox::~Cashbox() {}
 
@@ -159,9 +159,9 @@ void Cashbox::scan(const std::string& barcode)
 	this->barcode = barcode;
 }
 
-std::pair<const Product, size_t> Cashbox::getInfo()
+std::pair<const Product, size_t> Cashbox::getInfo(Stock& stock)
 {
-	for (auto product : products)
+	for (auto product : stock.products)
 	{
 		if (product.first.getBarcode() == barcode)
 		{
@@ -171,9 +171,9 @@ std::pair<const Product, size_t> Cashbox::getInfo()
 	throw std::exception("There is no such product in Stock.");
 }
 
-void Cashbox::add()
+void Cashbox::add(Stock& stock)
 {
-	auto prod = getInfo();
+	auto prod = getInfo(stock);
 	if (prod.second == 0)
 	{
 		throw std::exception("There is no such product in Stock.");
@@ -181,16 +181,16 @@ void Cashbox::add()
 	else
 	{
 		check[prod.first]++;
-		products[prod.first]--;
+		stock.products[prod.first]--;
 	}
 }
 
-void Cashbox::remove()
+void Cashbox::remove(Stock& stock)
 {
-	auto prod = getInfo();
+	auto prod = getInfo(stock);
 	size_t count = check[prod.first];
 	check.erase(prod.first);
-	products[prod.first] += count;
+	stock.products[prod.first] += count;
 }
 
 double Cashbox::amount()

@@ -55,22 +55,23 @@ public:
 	std::map<Product, size_t> getProducts() const;
 
 	Stock& operator=(const Stock&);
+	friend class Cashbox;
 };
 
 //----------------------------------------------------------------------------------
-class Cashbox : public Stock
+class Cashbox
 {
 private:
 	std::string barcode;
 	std::map<Product, size_t> check;
 public:
-	Cashbox(const std::string& path = "products_list.txt");
+	Cashbox();
 	~Cashbox();
 
 	void scan(const std::string&);
-	std::pair<const Product, size_t> getInfo();
-	void add();
-	void remove();
+	std::pair<const Product, size_t> getInfo(Stock&);
+	void add(Stock&);
+	void remove(Stock&);
 	double amount();
 	std::string createCheck();
 };
