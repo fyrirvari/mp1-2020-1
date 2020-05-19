@@ -32,6 +32,7 @@ void ButtonsDrawing::Render(std::vector<Button> buttons, int titlelength, int ma
 			else ss << std::setw(titlelength) << " ";
 			puts(ss.str().c_str());
 		}
+		textattr(LIGHTGRAY);
 	}
 }
 
@@ -52,8 +53,8 @@ int ButtonsDrawing::ClickListener(std::vector<Button> buttons, int titlelength, 
 			if (c == 72 && id > 0) { id--; changed = true; }
 			else if (c == 80 && id < buttons.size() - 1) { id++; changed = true; }
 			buttons[id].setState(true);
-			if (changed) { Render(buttons, titlelength, marginleft, margintop); changed = false; }
 		}
+		if (changed) { Render(buttons, titlelength, marginleft, margintop); changed = false; }
 	}
 }
 //-----------------------------------------------------------------------------
@@ -190,7 +191,7 @@ void textbackground(int color)
   char ch;
   pos = WhereXY();
   ReadConsoleOutputCharacter(Console, &ch, 1, pos, &Count);
-  printf("%c", ch);
+  //printf("%c", ch);
   gotoxy(pos.X, pos.Y);
 }
 
@@ -287,7 +288,7 @@ void ShowCursor(void)
 //-----------------------------------------------------------------------------
 void clrprt(int x, int y, int strings, int columns, TColor color)
 {
-	textattr(color);
+	textbackground(color);
 	for (int i = 0; i < strings; i++)
 	{
 		for (int j = 0; j < columns; j++)

@@ -54,4 +54,4 @@ void SetWindow(SMALL_RECT rect, COORD size);
 void GetWindow(SMALL_RECT *rect, COORD *size);
 void HideCursor(void);
 void ShowCursor(void);
-void clrprt(int x, int y, int strings, int columns, TColor color = LIGHTGRAY);
+void clrprt(int x, int y, int strings, int columns, TColor color = BLACK);
