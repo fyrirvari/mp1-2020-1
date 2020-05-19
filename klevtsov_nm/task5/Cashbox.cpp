@@ -215,7 +215,7 @@ std::string Cashbox::createCheck()
 		double amt = product.first.getPrice() * (1 - product.first.getDiscount() / 100) * product.second;
 		ss << std::fixed << std::setprecision(2)
 			<< std::setw(30) << std::left << product.first.getTitle() << " " << std::setw(8) << product.first.getPrice() << "rub*" << std::setw(2) << product.second
-			<< "\tdiscount - " << std::setw(5) << product.first.getDiscount() << "\%\t=" << std::setw(8) << amt << "\n";
+			<< "\tdiscount - " << std::setw(5) << product.first.getDiscount() << "%\t=" << std::setw(8) << amt << "\n";
 		amount += amt;
 	}
 	ss << "_____________\nTotal amount =" << amount << "\n"

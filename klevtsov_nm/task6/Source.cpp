@@ -8,6 +8,7 @@ int main(void)
 	srand(time(NULL));
 	while (true)
 	{
+		system("cls");
 		HideCursor();
 		std::pair<size_t, Mode> settings = startMenu();
 		Game game(50, 25);
@@ -21,12 +22,12 @@ int main(void)
 
 std::pair<size_t, Mode> startMenu()
 {
-	system("cls");
 	std::pair<size_t, Mode> settings = std::pair<size_t, Mode>(75, Mode::STANDART);
 	std::vector<Button> buttons = { Button("Start", true), Button("Settings"), Button("Exit") };
 	int modenum;
 	while (true)
 	{
+		system("cls");
 		int id = ButtonsDrawing::ClickListener(buttons, 25);
 		switch (id)
 		{
