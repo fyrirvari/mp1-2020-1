@@ -3,8 +3,8 @@
 int main(void)
 {
 	srand(time(NULL));
-	Cashbox cashbox;
 	Stock stock;
+	Cashbox cashbox(stock);
 	std::string barcode;
 	std::pair<Product, double> product;
 	int variable;
@@ -31,12 +31,12 @@ int main(void)
 				cashbox.scan(barcode);
 				break;
 			case 2:
-				product = cashbox.getInfo(stock);
+				product = cashbox.getInfo();
 				std::cout << product.first << "\tquantity - " << product.second << std::endl;
 				system("pause");
 				break;
 			case 3:
-				cashbox.add(stock);
+				cashbox.add();
 				break;
 			case 4:
 				system("cls");
@@ -48,7 +48,7 @@ int main(void)
 				system("pause");
 				break;
 			case 6:
-				cashbox.remove(stock);
+				cashbox.remove();
 				break;
 			}
 		}

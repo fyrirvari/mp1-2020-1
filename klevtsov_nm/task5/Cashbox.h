@@ -64,14 +64,15 @@ class Cashbox
 private:
 	std::string barcode;
 	std::map<Product, size_t> check;
+	Stock& stock;
 public:
-	Cashbox();
+	Cashbox(Stock& stock);
 	~Cashbox();
 
 	void scan(const std::string&);
-	std::pair<const Product, size_t> getInfo(Stock&);
-	void add(Stock&);
-	void remove(Stock&);
+	std::pair<const Product, size_t> getInfo();
+	void add();
+	void remove();
 	double amount();
 	std::string createCheck();
 };

@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Snake::Snake(SHORT centerX, SHORT centerY) : motion(Motion::LEFT), snake(5)
+Snake::Snake(SHORT centerX, SHORT centerY) : motion(Motion::LEFT), snake(5), last()
 {
 	for (size_t i = 0; i < 5; ++i)
 	{
@@ -65,7 +65,7 @@ bool Snake::inside()
 }
 
 //-------------------------------------------------------------------------------
-Apple::Apple(SHORT width, SHORT height)
+Apple::Apple(SHORT width, SHORT height) : visible(false)
 {
 	pos.X = (SHORT)(rand() % width + 2);
 	pos.Y = (SHORT)(rand() % height + 1);
@@ -91,7 +91,7 @@ void Apple::randPos(SHORT width, SHORT height)
 COORD Apple::getPos() { return pos; }
 bool Apple::getVisible() { return visible; }
 //-------------------------------------------------------------------------------
-Game::Game(SHORT width, SHORT height) : snake(width / 2 + 2, height / 2 + 1), apple(width, height)
+Game::Game(SHORT width, SHORT height) : snake(width / 2 + 2, height / 2 + 1), apple(width, height), size()
 {
 	setwindow(width + 4, height + 2);
 	size.X = width;
@@ -100,6 +100,7 @@ Game::Game(SHORT width, SHORT height) : snake(width / 2 + 2, height / 2 + 1), ap
 
 bool Game::start(size_t snakeSize, Mode mode)
 {
+	system("cls");
 	unsigned char c = 0;
 	clrprt(2, 1, size.Y, size.X, DARKGRAY);
 	clock_t sleeptime;

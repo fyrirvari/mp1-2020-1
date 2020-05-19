@@ -10,7 +10,7 @@ int main(void)
 	{
 		HideCursor();
 		std::pair<size_t, Mode> settings = startMenu();
-		Game game(75, 25);
+		Game game(50, 25);
 		if (game.start(settings.first, settings.second)) { system("cls"); std::cout << "Applause" << std::endl; }
 		else { system("cls"); std::cout << "Game over" << std::endl; }
 		system("pause");
@@ -27,7 +27,7 @@ std::pair<size_t, Mode> startMenu()
 	int modenum;
 	while (true)
 	{
-		int id = ButtonsDrawing::ClickListener(buttons);
+		int id = ButtonsDrawing::ClickListener(buttons, 25);
 		switch (id)
 		{
 		case 0: return settings; break;
