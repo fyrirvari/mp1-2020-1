@@ -20,7 +20,7 @@ private:
 	COORD last;
 public:
 	Snake(SHORT centerX, SHORT centerY);
-	void drow();
+	void drow() override;
 	void setmotion(Motion motion);
 	Motion getmotion();
 	COORD gethead();
@@ -38,7 +38,7 @@ private:
 	bool visible;
 public:
 	Apple(SHORT width, SHORT height);
-	void drow();
+	void drow() override;
 	void randPos(SHORT width, SHORT height);
 	COORD getPos();
 	bool getVisible();

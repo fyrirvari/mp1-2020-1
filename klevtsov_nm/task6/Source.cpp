@@ -36,6 +36,7 @@ std::pair<size_t, Mode> startMenu()
 			system("cls");
 			std::cout << "Enter snake size: ";
 			std::cin >> settings.first;
+			settings.first = settings.first > 10 ? (settings.first < 150 ? settings.first : 150) : 10;
 			std::cout << "Change mode (0:Easy 1:Standart 2:Hard): ";
 			std::cin >> modenum;
 			settings.second = modenum == 0 ? Mode::EASY : modenum == 1 ? Mode::STANDART : Mode::HARD;
